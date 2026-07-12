@@ -1,0 +1,15 @@
+{
+  "name": "share-david-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A low-maintenance public and unlisted sharing shelf backed by Wasabi.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "check": "npm test && npm run build"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

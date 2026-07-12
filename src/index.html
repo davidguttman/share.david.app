@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Things David has shared.">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="David’s share shelf">
+    <meta property="og:description" content="Things David has shared.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://share.david.app/">
+    <title>David’s share shelf</title>
+    <link rel="stylesheet" href="/assets/app.v1.css">
+    <script defer src="/assets/app.v1.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="masthead">
+        <p class="eyebrow">share.david.app</p>
+        <h1>Things worth sharing.</h1>
+        <p class="lede">Notes, snippets, files, and small artifacts from David.</p>
+      </header>
+
+      <section class="index" aria-labelledby="shared-heading">
+        <div class="index-heading">
+          <h2 id="shared-heading">Public shelf</h2>
+          <label class="search">
+            <span class="sr-only">Search shared pages</span>
+            <input type="search" id="search" placeholder="Search" autocomplete="off">
+          </label>
+        </div>
+        <p id="status" class="status">Loading…</p>
+        <ol id="items" class="items" hidden></ol>
+      </section>
+    </main>
+  </body>
+</html>

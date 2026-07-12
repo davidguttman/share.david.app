@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: share-david-app
+    runtime: static
+    repo: https://github.com/davidguttman/share.david.app
+    branch: main
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    domains:
+      - share.david.app
+    routes:
+      - type: rewrite
+        source: /p/*
+        destination: https://haku-share-pages.s3.us-west-2.wasabisys.com/pages/*.html
