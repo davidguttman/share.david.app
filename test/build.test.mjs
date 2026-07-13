@@ -12,4 +12,5 @@ test('build emits the static entrypoint and versioned assets', async () => {
   assert.match(html, /assets\/app\.v1\.css/);
   assert.match(css, /--accent/);
   assert.match(js, /index\.json/);
+  assert.match(js, /metaParts\.join\(' · '\)/);
 });

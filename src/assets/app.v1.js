@@ -23,9 +23,12 @@
         }
         const meta = document.createElement('div');
         meta.className = 'meta';
-        if (page.created) meta.append(new Date(page.created).toLocaleDateString());
-        for (const tag of page.tags || []) meta.append(tag);
-        if (meta.childNodes.length) li.append(meta);
+        const metaParts = [
+          ...(page.created ? [new Date(page.created).toLocaleDateString()] : []),
+          ...(page.tags || []),
+        ];
+        meta.textContent = metaParts.join(' · ');
+        if (metaParts.length) li.append(meta);
         return li;
       }));
       items.hidden = false;
