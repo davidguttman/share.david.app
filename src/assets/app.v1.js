@@ -60,7 +60,7 @@
     const original = document.createElement('span');
     original.className = 'chroma-original';
 
-    if (heading.matches('.share-page article h2')) {
+    if (heading.matches('.share-page article h2, .masthead h1, .item > a')) {
       const prompt = document.createElement('span');
       prompt.className = 'chroma-prompt';
       prompt.textContent = '>';
