@@ -11,9 +11,24 @@ A low-maintenance sharing shelf. The app and shared CSS/JS are deployed as a Ren
 Published documents can use the shared assets:
 
 ```html
-<link rel="stylesheet" href="https://share.david.app/assets/app.v1.css">
+<link rel="stylesheet" href="https://share.david.app/assets/app.v2.css">
 <script defer src="https://share.david.app/assets/app.v1.js"></script>
 ```
+
+### Summary components
+
+Long-form summaries can compose the shared classes below rather than embedding page-specific CSS:
+
+- `summary-document` — article wrapper
+- `summary-lead`, `summary-callout`, `summary-takeaway` — emphasized text blocks
+- `summary-stats` + `summary-stat` — quantitative highlights
+- `summary-section`, `summary-kicker`, `summary-section-intro` — section hierarchy
+- `summary-cards` + `summary-card` — one focused idea per card
+- `summary-cards--compact` — optional two-column card layout
+- `summary-quotes` + `summary-quote` — quote grid
+- `summary-source` — source/footer treatment
+
+These primitives are mobile-first and use the shared color variables, including dark mode.
 
 ## Render
 

@@ -50,3 +50,77 @@
     setTimeout(() => { copyButton.textContent = original; }, 1200);
   });
 })();
+
+(() => {
+  const headings = [...document.querySelectorAll('.share-page h1, .share-page article h2, .masthead h1, .index h2')];
+  if (!headings.length) return;
+
+  headings.forEach((heading) => {
+    if (heading.querySelector(':scope > .chroma-stack')) return;
+
+    const original = document.createElement('span');
+    original.className = 'chroma-original';
+
+    if (heading.matches('h2')) {
+      const prompt = document.createElement('span');
+      prompt.className = 'chroma-prompt';
+      prompt.textContent = '>';
+      original.append(prompt);
+    }
+
+    while (heading.firstChild) original.append(heading.firstChild);
+
+    const stack = document.createElement('span');
+    stack.className = 'chroma-stack';
+
+    ['red', 'green', 'blue'].forEach((channel) => {
+      const copy = original.cloneNode(true);
+      copy.className = `chroma-channel chroma-channel--${channel}`;
+      copy.setAttribute('aria-hidden', 'true');
+      stack.append(copy);
+    });
+
+    stack.append(original);
+    heading.append(stack);
+    heading.classList.add('chroma-heading');
+  });
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let timer;
+  let resetTimer;
+
+  const reset = (heading) => {
+    heading.style.removeProperty('--ca-red-x');
+    heading.style.removeProperty('--ca-red-y');
+    heading.style.removeProperty('--ca-blue-x');
+    heading.style.removeProperty('--ca-blue-y');
+  };
+
+  const schedule = () => {
+    window.clearTimeout(timer);
+    if (reducedMotion.matches || document.hidden) return;
+    timer = window.setTimeout(pulse, 2600 + Math.random() * 4200);
+  };
+
+  const pulse = () => {
+    const heading = headings[Math.floor(Math.random() * headings.length)];
+    const spread = 2.4 + Math.random() * 1.8;
+    const y = -0.6 + Math.random() * 1.2;
+
+    heading.style.setProperty('--ca-red-x', `${(-spread).toFixed(2)}px`);
+    heading.style.setProperty('--ca-red-y', `${y.toFixed(2)}px`);
+    heading.style.setProperty('--ca-blue-x', `${spread.toFixed(2)}px`);
+    heading.style.setProperty('--ca-blue-y', `${(-y).toFixed(2)}px`);
+
+    window.clearTimeout(resetTimer);
+    resetTimer = window.setTimeout(() => reset(heading), 90 + Math.random() * 80);
+    schedule();
+  };
+
+  document.addEventListener('visibilitychange', schedule);
+  reducedMotion.addEventListener?.('change', () => {
+    headings.forEach(reset);
+    schedule();
+  });
+  schedule();
+})();
