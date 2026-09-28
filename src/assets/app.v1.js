@@ -52,16 +52,15 @@
 })();
 
 (() => {
-  const headings = [...document.querySelectorAll('.share-page h1, .share-page article h2, .masthead h1, .index h2')];
-  if (!headings.length) return;
+  const headings = [];
 
-  headings.forEach((heading) => {
+  const decorate = (heading) => {
     if (heading.querySelector(':scope > .chroma-stack')) return;
 
     const original = document.createElement('span');
     original.className = 'chroma-original';
 
-    if (heading.matches('h2')) {
+    if (heading.matches('.share-page article h2')) {
       const prompt = document.createElement('span');
       prompt.className = 'chroma-prompt';
       prompt.textContent = '>';
@@ -83,7 +82,21 @@
     stack.append(original);
     heading.append(stack);
     heading.classList.add('chroma-heading');
-  });
+    headings.push(heading);
+  };
+
+  document
+    .querySelectorAll('.share-page h1, .share-page article h2, .masthead h1')
+    .forEach(decorate);
+
+  const items = document.querySelector('#items');
+  if (items) {
+    const decorateLinks = () => items.querySelectorAll(':scope > .item > a').forEach(decorate);
+    new MutationObserver(decorateLinks).observe(items, { childList: true });
+    decorateLinks();
+  }
+
+  if (!headings.length && !items) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let timer;
@@ -98,7 +111,7 @@
 
   const schedule = () => {
     window.clearTimeout(timer);
-    if (reducedMotion.matches || document.hidden) return;
+    if (reducedMotion.matches || document.hidden || !headings.length) return;
     timer = window.setTimeout(pulse, 2600 + Math.random() * 4200);
   };
 
