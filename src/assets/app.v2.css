@@ -517,6 +517,7 @@ li::marker { color: var(--pink); }
   position: relative;
   padding: 1.35rem 0 1.4rem 1.05rem;
   border-bottom: 1px solid var(--line);
+  cursor: pointer;
   transition: background .15s ease, border-color .15s ease;
 }
 .item::before {
@@ -535,12 +536,6 @@ li::marker { color: var(--pink); }
   font: 700 clamp(1rem, 2.5vw, 1.14rem)/1.35 var(--mono-font);
   letter-spacing: -.005em;
   text-decoration: none;
-}
-.item a::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
 }
 .item:hover a { color: var(--cyan); }
 .item:focus-within { outline: 1px solid var(--cyan); outline-offset: .24rem; }

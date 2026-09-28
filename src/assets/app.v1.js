@@ -29,6 +29,15 @@
         ];
         meta.textContent = metaParts.join(' · ');
         if (metaParts.length) li.append(meta);
+
+        li.addEventListener('click', (event) => {
+          if (event.target.closest('a') || window.getSelection()?.toString()) return;
+          if (event.metaKey || event.ctrlKey || event.shiftKey) {
+            window.open(link.href, '_blank', 'noopener');
+            return;
+          }
+          link.click();
+        });
         return li;
       }));
       items.hidden = false;
