@@ -21,6 +21,6 @@ test('build emits the static entrypoint and versioned assets', async () => {
   assert.match(js, /\.share-page article h2, \.masthead h1/);
   assert.match(js, /:scope > \.item > a/);
   assert.match(js, /MutationObserver/);
-  assert.match(js, /\.masthead h1, \.item > a/);
+  assert.match(js, /\.share-page article h2, \.item > a/);
   assert.match(js, /\['red', 'green', 'blue'\]/);
 });
