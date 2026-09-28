@@ -536,8 +536,15 @@ li::marker { color: var(--pink); }
   letter-spacing: -.005em;
   text-decoration: none;
 }
+.item a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
 .item:hover a { color: var(--cyan); }
-.item a:focus-visible { color: var(--cyan); outline: 1px solid var(--cyan); outline-offset: .24rem; }
+.item:focus-within { outline: 1px solid var(--cyan); outline-offset: .24rem; }
+.item a:focus-visible { color: var(--cyan); outline: none; }
 .item p {
   max-width: 42rem;
   margin: .5rem 0 0;

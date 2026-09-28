@@ -16,6 +16,8 @@ test('build emits the static entrypoint and versioned assets', async () => {
   assert.match(css, /\.masthead h1/);
   assert.match(css, /\.search::before/);
   assert.doesNotMatch(css, /↗/);
+  assert.match(css, /\.item a::before/);
+  assert.match(css, /inset: 0/);
   assert.match(js, /index\.json/);
   assert.match(js, /metaParts\.join\(' · '\)/);
   assert.match(js, /\.share-page article h2, \.masthead h1/);
